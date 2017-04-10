@@ -11,18 +11,18 @@ import java.util.Map;
 
 /*
     Variables:
-        Name of habbit
+        Name of habit
         Completed
  */
 
-public class Habbit {
+public class Habit {
 
     String name;
     Boolean completed;
     int numDescriptors;
     ArrayList<Descriptor> descriptors;
 
-    public Habbit(String n){
+    public Habit(String n){
         name = n;
         completed = false;
         numDescriptors = 0;
