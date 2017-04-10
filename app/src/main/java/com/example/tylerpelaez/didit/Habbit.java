@@ -1,5 +1,7 @@
 package com.example.tylerpelaez.didit;
 
+
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,16 +20,19 @@ public class Habbit {
     String name;
     Boolean completed;
     int numDescriptors;
-    Map<String, String> descriptors;
+    ArrayList<Descriptor> descriptors;
 
     public Habbit(String n){
         name = n;
         completed = false;
         numDescriptors = 0;
-        descriptors = new HashMap<String, String>();
+        descriptors = new ArrayList<Descriptor>();
     }
 
     void addDescriptor(String n, String v){
-        descriptors.put(n,v);
+        Descriptor temp = new Descriptor(n,v);
+        descriptors.add(temp);
     }
+
+
 }
