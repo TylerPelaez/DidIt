@@ -28,6 +28,6 @@ public class Habbit {
     }
 
     void addDescriptor(String n, String v){
-        descriptors.add(n,v);
+        descriptors.put(n,v);
     }
 }
