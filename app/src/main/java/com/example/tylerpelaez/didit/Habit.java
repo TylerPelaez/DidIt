@@ -35,6 +35,7 @@ public class Habit {
     void addDescriptor(String n, String v){
         Descriptor temp = new Descriptor(n,v);
         descriptors.add(temp);
+        numDescriptors++;
     }
 
     void goalCompleted(){
