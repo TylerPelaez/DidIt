@@ -7,24 +7,20 @@ import android.os.Parcelable;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.List;
+import java.util.HashMap;
 
 
 /**
  * Created by Stephen on 4/9/2017.
  */
 
-/*
-    Variables:
-        Name of habit
-        Completed
- */
 
 public class Habit implements Parcelable {
     String name;
     int numDescriptors;
     ArrayList<String> completed;
     ArrayList<Descriptor> descriptors;
+    HashMap<String, ArrayList<Descriptor>> log;
 
     @Override
     public int describeContents() {
@@ -61,13 +57,8 @@ public class Habit implements Parcelable {
         completed = new ArrayList<String>();
         numDescriptors = 0;
         descriptors = new ArrayList<Descriptor>();
+        log = new HashMap<String, ArrayList<Descriptor>>();
     }
-
-//    void addDescriptor(String n, String v){
-//        Descriptor temp = new Descriptor(n,v);
-//        descriptors.add(temp);
-//        numDescriptors++;
-//    }
 
     void addTime(int h, int m, int s, String l){
         Descriptor temp = new Time(h,m,s,l);
