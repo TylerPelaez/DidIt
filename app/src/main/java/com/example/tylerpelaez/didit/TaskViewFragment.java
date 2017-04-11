@@ -2,12 +2,17 @@ package com.example.tylerpelaez.didit;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Debug;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
+
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,6 +50,16 @@ public class TaskViewFragment extends Fragment {
         listView.setAdapter(mTaskListAdapter);
         mTaskListAdapter.add(new Habit("Words"));
 
+        //Button fab = (Button) rootView.findViewById(R.id.fab);
+/*
+        fab.setOnClickListener( new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+            }
+        } );
+*/
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
 

@@ -53,7 +53,7 @@ public class Habit implements Parcelable {
         numDescriptors = in.readInt();
         name = in.readString();
         in.readStringList(completed);
-        in.readTypedList(descriptors,Descriptor.CREATOR);
+        in.readTypedList(descriptors, Descriptor.CREATOR);
     }
 
     public Habit(String n){
