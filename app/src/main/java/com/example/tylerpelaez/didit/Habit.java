@@ -8,7 +8,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
-import java.util.List;
 
 
 /**
@@ -60,12 +59,6 @@ public class Habit implements Parcelable {
         descriptors = new ArrayList<Descriptor>();
         log = new HashMap<String, ArrayList<Descriptor>>();
     }
-
-//    void addDescriptor(String n, String v){
-//        Descriptor temp = new Descriptor(n,v);
-//        descriptors.add(temp);
-//        numDescriptors++;
-//    }
 
     void addTime(int h, int m, int s, String l){
         Descriptor temp = new Time(h,m,s,l);
