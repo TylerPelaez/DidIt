@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">DidIt</string>
+    <string name="title_activity_graph">GraphActivity</string>
+    <string name="action_settings">Settings</string>
 </resources>
