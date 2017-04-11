@@ -47,4 +47,20 @@ public class Time extends Descriptor implements Parcelable {
         min = m;
         sec = s;
     }
+
+    int getHour(){
+        return hour;
+    }
+
+    int getMin(){
+        return min;
+    }
+
+    int getSec(){
+        return sec;
+    }
+
+    String getTime(){
+        return hour+":"+min+":"+sec;
+    }
 }

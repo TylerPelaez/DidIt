@@ -33,4 +33,12 @@ public class Note extends Descriptor implements Parcelable {
     private Note(Parcel in) {
         note = in.readString();
     }
+
+    public Note(String n){
+        note = n;
+    }
+
+    String getNote(){
+        return note;
+    }
 }

@@ -33,4 +33,12 @@ public class Number extends Descriptor implements Parcelable {
     private Number(Parcel in) {
         num = in.readDouble();
     }
+
+    public Number(double n){
+        num = n;
+    }
+
+    double getNum(){
+        return num;
+    }
 }

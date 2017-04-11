@@ -63,8 +63,26 @@ public class Habit implements Parcelable {
         descriptors = new ArrayList<Descriptor>();
     }
 
-    void addDescriptor(String n, String v){
-        Descriptor temp = new Descriptor(n,v);
+//    void addDescriptor(String n, String v){
+//        Descriptor temp = new Descriptor(n,v);
+//        descriptors.add(temp);
+//        numDescriptors++;
+//    }
+
+    void addTime(int h, int m, int s, String l){
+        Descriptor temp = new Time(h,m,s,l);
+        descriptors.add(temp);
+        numDescriptors++;
+    }
+
+    void addNote(String n){
+        Descriptor temp = new Note(n);
+        descriptors.add(temp);
+        numDescriptors++;
+    }
+
+    void addNumber(double n){
+        Descriptor temp = new Number(n);
         descriptors.add(temp);
         numDescriptors++;
     }
