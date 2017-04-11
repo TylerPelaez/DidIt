@@ -1,12 +1,14 @@
 package com.example.tylerpelaez.didit;
 
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
+
 
 /**
  * Created by Stephen on 4/9/2017.
@@ -18,12 +20,41 @@ import java.util.Map;
         Completed
  */
 
-public class Habit {
-
+public class Habit implements Parcelable {
     String name;
     int numDescriptors;
     ArrayList<String> completed;
     ArrayList<Descriptor> descriptors;
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel out, int flags) {
+        out.writeInt(numDescriptors);
+        out.writeString(name);
+        out.writeStringList(completed);
+        out.writeTypedList(descriptors);
+    }
+
+    public static final Parcelable.Creator<Habit> CREATOR = new Parcelable.Creator<Habit>() {
+        public Habit createFromParcel(Parcel in) {
+            return new Habit(in);
+        }
+
+        public Habit[] newArray(int size) {
+            return new Habit[size];
+        }
+    };
+
+    private Habit(Parcel in) {
+        numDescriptors = in.readInt();
+        name = in.readString();
+        in.readStringList(completed);
+        in.readTypedList(descriptors,Descriptor.CREATOR);
+    }
 
     public Habit(String n){
         name = n;
