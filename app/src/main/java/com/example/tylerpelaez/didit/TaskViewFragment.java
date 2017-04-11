@@ -41,21 +41,18 @@ public class TaskViewFragment extends Fragment {
 
         ListView listView = (ListView) rootView.findViewById(R.id.list_view);
 
-        mTaskListAdapter = new TaskListAdapter(getActivity(), new ArrayList<String>());
+        mTaskListAdapter = new TaskListAdapter(getActivity(), new ArrayList<Habit>());
         listView.setAdapter(mTaskListAdapter);
-        mTaskListAdapter.add("Words");
+        mTaskListAdapter.add(new Habit("Words"));
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                // Will need to implement task objects as parcelable, see
-                // http://stackoverflow.com/questions/2139134/how-to-send-an-object-from-one-android-activity-to-another-using-intents
-                // for more info. class doesnt need to be anything fancy, just add this shit in.
-                // Intent historyIntent = new Intent(getActivity(), historyActivity.class)
-                //        .putExtra()
-
+                Intent graphIntent = new Intent(getActivity(), GraphActivity.class)
+                        .putExtra("Habit", mTaskListAdapter.getItem(position));
+                startActivity(graphIntent);
             }
         });
 
