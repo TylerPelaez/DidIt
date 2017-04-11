@@ -21,18 +21,18 @@ import java.util.ArrayList;
  * Created by tylerpelaez on 4/6/17.
  */
 
-public class TaskListAdapter extends ArrayAdapter<String> {
+public class TaskListAdapter extends ArrayAdapter<Habit> {
 
     private Context context;
     private LayoutInflater inflater;
 
-    private ArrayList<String> taskInfo;
+    private ArrayList<Habit> habitList;
 
-    public TaskListAdapter(Context context, ArrayList<String> taskInfoString) {
-        super(context, R.layout.list_item_task, taskInfoString);
+    public TaskListAdapter(Context context, ArrayList<Habit> habitList) {
+        super(context, R.layout.list_item_task, habitList);
 
         this.context = context;
-        this.taskInfo = taskInfoString;
+        this.habitList = habitList;
 
         inflater = LayoutInflater.from(context);
     }
@@ -47,9 +47,7 @@ public class TaskListAdapter extends ArrayAdapter<String> {
 
         CheckBox checkBox = (CheckBox) convertView.findViewById(R.id.list_item_checkbox);
 
-
-
-        textView.setText(taskInfo.get(position));
+        textView.setText(habitList.get(position).name);
 
         checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -69,24 +67,24 @@ public class TaskListAdapter extends ArrayAdapter<String> {
     @Override
     public void clear() {
         super.clear();
-        taskInfo.clear();
+        habitList.clear();
         notifyDataSetChanged();
     }
 
     @Override
-    public void add(String string) {
-        taskInfo.add(string);
+    public void add(Habit habit) {
+        habitList.add(habit);
         notifyDataSetChanged();
     }
 
 
     @Nullable
     @Override
-    public String getItem(int position) {
-        if(position > taskInfo.size()) {
+    public Habit getItem(int position) {
+        if(position > habitList.size()) {
             return null;
         }
-        return taskInfo.get(position);
+        return habitList.get(position);
     }
 
 }
