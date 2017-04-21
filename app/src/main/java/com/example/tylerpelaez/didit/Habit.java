@@ -18,8 +18,7 @@ import java.util.HashMap;
 public class Habit implements Parcelable {
     String name;
     int numDescriptors;
-    ArrayList<String> completed;
-    ArrayList<Descriptor> descriptors;
+    ArrayList<String> descriptors;
     HashMap<String, ArrayList<Descriptor>> log;
 
     @Override
@@ -31,8 +30,7 @@ public class Habit implements Parcelable {
     public void writeToParcel(Parcel out, int flags) {
         out.writeInt(numDescriptors);
         out.writeString(name);
-        out.writeStringList(completed);
-        out.writeTypedList(descriptors);
+        out.writeStringList(descriptors);
     }
 
     public static final Parcelable.Creator<Habit> CREATOR = new Parcelable.Creator<Habit>() {
@@ -48,40 +46,52 @@ public class Habit implements Parcelable {
     private Habit(Parcel in) {
         numDescriptors = in.readInt();
         name = in.readString();
-        in.readStringList(completed);
-        in.readTypedList(descriptors, Descriptor.CREATOR);
+        in.readStringList(descriptors);
     }
 
     public Habit(String n){
         name = n;
-        completed = new ArrayList<String>();
         numDescriptors = 0;
-        descriptors = new ArrayList<Descriptor>();
+        descriptors = new ArrayList<String>();
         log = new HashMap<String, ArrayList<Descriptor>>();
     }
 
-    void addTime(int h, int m, int s, String l){
-        Descriptor temp = new Time(h,m,s,l);
-        descriptors.add(temp);
-        numDescriptors++;
+//    void addTime(int h, int m, int s, String l){
+//        Descriptor temp = new Time(h,m,s,l);
+//        descriptors.add(temp);
+//        numDescriptors++;
+//    }
+//
+//    void addNote(String n){
+//        Descriptor temp = new Note(n);
+//        descriptors.add(temp);
+//        numDescriptors++;
+//    }
+//
+//    void addNumber(double n){
+//        Descriptor temp = new Number(n);
+//        descriptors.add(temp);
+//        numDescriptors++;
+//    }
+
+
+    public ArrayList<String> getDescriptors() {
+        return descriptors;
     }
 
-    void addNote(String n){
-        Descriptor temp = new Note(n);
-        descriptors.add(temp);
-        numDescriptors++;
+    void addDescriptor(String d){
+        descriptors.add(d);
     }
 
-    void addNumber(double n){
-        Descriptor temp = new Number(n);
-        descriptors.add(temp);
-        numDescriptors++;
+    void removeDescriptor(String d){
+        int loc = descriptors.indexOf(d);
+        descriptors.remove(loc);
     }
 
     void goalCompleted(){
         SimpleDateFormat sdf = new SimpleDateFormat("mm/dd/yyyy");
         String today = sdf.format(Calendar.getInstance().get(Calendar.DATE));
-        completed.add(today);
+        //log.put(today);
     }
 
 
