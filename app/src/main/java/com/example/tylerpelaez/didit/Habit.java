@@ -77,23 +77,22 @@ public class Habit implements Parcelable {
 //    }
 
 
-    public ArrayList<String> getDescriptors() {
+    public LinkedHashMap<String, String> getDescriptors(){
         return descriptors;
     }
 
-    void addDescriptor(String d){
-        descriptors.add(d);
+    void addDescriptor(String l, String d){
+        descriptors.put(l,d);
     }
 
-    void removeDescriptor(String d){
-        int loc = descriptors.indexOf(d);
-        descriptors.remove(loc);
+    void removeDescriptor(String l){
+        descriptors.remove(l);
     }
 
-    void goalCompleted(){
+    void goalCompleted(ArrayList<Descriptor> desc){
         SimpleDateFormat sdf = new SimpleDateFormat("mm/dd/yyyy");
         String today = sdf.format(Calendar.getInstance().get(Calendar.DATE));
-        //log.put(today);
+        log.put(today,desc);
     }
 
 
