@@ -8,6 +8,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 
 /**
@@ -18,7 +19,8 @@ import java.util.HashMap;
 public class Habit implements Parcelable {
     String name;
     int numDescriptors;
-    ArrayList<String> descriptors;
+    // Key is Label, Value is type of descriptor
+    LinkedHashMap<String, String> descriptors;
     HashMap<String, ArrayList<Descriptor>> log;
 
     @Override
@@ -30,7 +32,7 @@ public class Habit implements Parcelable {
     public void writeToParcel(Parcel out, int flags) {
         out.writeInt(numDescriptors);
         out.writeString(name);
-        out.writeStringList(descriptors);
+        //out.writeStringList(descriptors);
     }
 
     public static final Parcelable.Creator<Habit> CREATOR = new Parcelable.Creator<Habit>() {
@@ -46,13 +48,13 @@ public class Habit implements Parcelable {
     private Habit(Parcel in) {
         numDescriptors = in.readInt();
         name = in.readString();
-        in.readStringList(descriptors);
+        //in.readStringList(descriptors);
     }
 
     public Habit(String n){
         name = n;
         numDescriptors = 0;
-        descriptors = new ArrayList<String>();
+        descriptors = new LinkedHashMap<String, String>();
         log = new HashMap<String, ArrayList<Descriptor>>();
     }
 
