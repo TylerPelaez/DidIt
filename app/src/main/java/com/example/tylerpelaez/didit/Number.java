@@ -9,6 +9,7 @@ import android.os.Parcelable;
 
 public class Number extends Descriptor implements Parcelable {
     double num;
+    String label;
 
     @Override
     public int describeContents() {
