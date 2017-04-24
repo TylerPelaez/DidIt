@@ -48,7 +48,7 @@ public class TaskViewFragment extends Fragment {
 
         mTaskListAdapter = new TaskListAdapter(getActivity(), new ArrayList<Habit>());
         listView.setAdapter(mTaskListAdapter);
-        mTaskListAdapter.add(new Habit("Words"));
+        mTaskListAdapter.add(new Habit("Test"));
 
         //Button fab = (Button) rootView.findViewById(R.id.fab);
 /*
