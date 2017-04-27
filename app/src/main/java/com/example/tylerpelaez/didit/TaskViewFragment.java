@@ -1,21 +1,30 @@
 package com.example.tylerpelaez.didit;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Debug;
+import android.support.design.widget.AppBarLayout;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
-
+import android.widget.PopupWindow;
 
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static android.content.Context.LAYOUT_INFLATER_SERVICE;
 
 
 /**
@@ -28,16 +37,30 @@ public class TaskViewFragment extends Fragment {
 
 
     public TaskViewFragment() {
-
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setHasOptionsMenu(false);
+        setHasOptionsMenu(true);
+
+
 
     }
+
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        // Inflate the menu; this adds items to the action bar if it is present.
+        inflater.inflate(R.menu.menu_main_fragment, menu);
+
+
+        return;
+    }
+
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -50,28 +73,44 @@ public class TaskViewFragment extends Fragment {
         listView.setAdapter(mTaskListAdapter);
         mTaskListAdapter.add(new Habit("Words"));
 
-        //Button fab = (Button) rootView.findViewById(R.id.fab);
-/*
-        fab.setOnClickListener( new AdapterView.OnItemClickListener() {
 
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-            }
-        } );
-*/
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
                 Intent graphIntent = new Intent(getActivity(), GraphActivity.class)
                         .putExtra("Habit", mTaskListAdapter.getItem(position));
                 startActivity(graphIntent);
+
             }
         });
 
         return rootView;
+
+    }
+
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_add_habit:
+                createPopupWindow();
+                return true;
+
+            default:
+                // If we got here, the user's action was not recognized.
+                // Invoke the superclass to handle it.
+
+                return super.onOptionsItemSelected(item);
+
+        }
+    }
+
+    void createPopupWindow() {
+        Log.d("HERE:", "HERE");
 
     }
 
