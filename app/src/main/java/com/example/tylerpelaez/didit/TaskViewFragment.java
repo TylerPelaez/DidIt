@@ -6,19 +6,26 @@ import android.os.Bundle;
 import android.os.Debug;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewGroup.LayoutParams;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
+import android.widget.TextView;
 
 
 import java.util.ArrayList;
@@ -43,6 +50,11 @@ public class TaskViewFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
+
+
+
+
+
         setHasOptionsMenu(true);
 
 
@@ -74,6 +86,8 @@ public class TaskViewFragment extends Fragment {
         mTaskListAdapter.add(new Habit("Test"));
 
 
+
+
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
 
@@ -83,7 +97,6 @@ public class TaskViewFragment extends Fragment {
                 Intent graphIntent = new Intent(getActivity(), GraphActivity.class)
                         .putExtra("Habit", mTaskListAdapter.getItem(position));
                 startActivity(graphIntent);
-
             }
         });
 
@@ -97,7 +110,7 @@ public class TaskViewFragment extends Fragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_add_habit:
-                createPopupWindow();
+                showDialog();
                 return true;
 
             default:
@@ -109,9 +122,16 @@ public class TaskViewFragment extends Fragment {
         }
     }
 
-    void createPopupWindow() {
-        Log.d("HERE:", "HERE");
 
+
+
+
+    public void showDialog() {
+        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+        CustomDialogFragment dialog = CustomDialogFragment.newInstance();
+        dialog.show(getActivity().getFragmentManager(),"dialog fragment");
+
+        //getActivity().getFragmentManager().beginTransaction().add(android.R.id.content, dialog).commit();
     }
 
 

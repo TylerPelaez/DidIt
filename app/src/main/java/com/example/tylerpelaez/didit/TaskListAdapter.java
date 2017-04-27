@@ -54,7 +54,11 @@ public class TaskListAdapter extends ArrayAdapter<Habit> {
             public void onCheckedChanged(CompoundButton buttonView,boolean isChecked) {
                 RelativeLayout container = (RelativeLayout) buttonView.getParent();
 
-                container.setBackgroundColor(0xFF00FF00);
+                if (isChecked) {
+                    container.setBackgroundColor(0xFF00FF00);
+                } else {
+                    container.setBackgroundColor(0);
+                }
 
             }
         });
