@@ -83,8 +83,8 @@ public class TaskViewFragment extends Fragment {
 
         mTaskListAdapter = new TaskListAdapter(getActivity(), new ArrayList<Habit>());
         listView.setAdapter(mTaskListAdapter);
-        mTaskListAdapter.add(new Habit("Test"));
-
+        Habit habit = new Habit("Test");
+        mTaskListAdapter.add(habit);
 
 
 

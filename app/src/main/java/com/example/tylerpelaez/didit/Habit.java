@@ -19,7 +19,7 @@ import java.util.HashMap;
 
 
 public class Habit extends JSONObject implements Serializable {
-    String name;
+    public String name;
     ArrayList<String> labels;
     ArrayList<String> descriptors;
     // Key is date, Value is descriptors
