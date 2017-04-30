@@ -2,4 +2,6 @@
     <string name="app_name">DidIt</string>
     <string name="title_activity_graph">GraphActivity</string>
     <string name="action_settings">Settings</string>
+    <string name="action_add_habit">Add Habit</string>
+    <string name="hello_world">Hello World</string>
 </resources>
