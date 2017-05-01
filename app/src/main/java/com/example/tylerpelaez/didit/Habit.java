@@ -25,6 +25,7 @@ public class Habit extends JSONObject implements Serializable {
     // Key is date, Value is descriptors
     HashMap<String, ArrayList<Descriptor>> log;
     public boolean everyOther;
+    public int num_skips;
     public HashMap<String,Boolean> weekdays;
 
 //    @Override
@@ -61,6 +62,7 @@ public class Habit extends JSONObject implements Serializable {
         descriptors = new ArrayList<String>();
         log = new HashMap<String, ArrayList<Descriptor>>();
         everyOther = false;
+        num_skips = 0;
         weekdays = new HashMap<String,Boolean>();
         weekdays.put("Monday",false);
         weekdays.put("Tuesday",false);
@@ -101,13 +103,15 @@ public class Habit extends JSONObject implements Serializable {
         }
     }
 
+    void setEveryOther(boolean v, int num_days) {
+        everyOther = v;
+        num_skips = num_days;
+    }
+
     void removeWeekday(String d){
         if(weekdays.containsKey(d)) {
             weekdays.put(d, false);
         }
     }
 
-    void setEveryOther(boolean v){
-        everyOther = v;
-    }
 }

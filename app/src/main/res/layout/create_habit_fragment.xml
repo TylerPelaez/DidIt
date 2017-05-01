@@ -32,7 +32,7 @@
         android:id="@+id/text_view_days_selected"
         />
 
-    <Spinner
+    <com.example.tylerpelaez.didit.NDSpinner
         android:id="@+id/day_select_spinner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

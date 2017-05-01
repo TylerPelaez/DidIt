@@ -36,4 +36,41 @@
         <item>Every X Days</item>
         <item>Certain Weekdays</item>
     </string-array>
+
+
+    <string name="pick_day_title">Choose Weekdays</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
+
+    <string-array name="weekdays_array">
+        <item>Sunday</item>
+        <item>Monday</item>
+        <item>Tuesday</item>
+        <item>Wednesday</item>
+        <item>Thursday</item>
+        <item>Friday</item>
+        <item>Saturday</item>
+    </string-array>
+
+    <string-array name="weekdays_abbr_array">
+        <item>S</item>
+        <item>M</item>
+        <item>T</item>
+        <item>W</item>
+        <item>R</item>
+        <item>F</item>
+        <item>S</item>
+    </string-array>
+
+    <string name="every_x_days_title">Choose Days</string>
+
+    <string-array name="every_x_days_array">
+        <item>Every Day</item>
+        <item>Every 2 Days</item>
+        <item>Every 3 Days</item>
+        <item>Every 4 Days</item>
+        <item>Every 5 Days</item>
+        <item>Every 6 Days</item>
+        <item>Every 7 Days</item>
+    </string-array>
 </resources>
