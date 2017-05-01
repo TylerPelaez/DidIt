@@ -1,12 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/create_habit_fragment">
+    android:id="@+id/create_habit_fragment"
+    >
+
 
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="this is  atest"/>
-</LinearLayout>
+        android:text="When will you do this?"
+        android:gravity="center_vertical"
+        android:textSize="8pt"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="12dp"
+        android:layout_marginLeft="8dp"
+        android:textStyle="bold"
+        android:id="@+id/text_view_when_do"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:textSize="6pt"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="12dp"
+        android:layout_marginRight="8dp"
+        android:id="@+id/text_view_days_selected"
+        />
+
+    <Spinner
+        android:id="@+id/day_select_spinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minWidth="12dp"
+        android:maxWidth="35dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignRight="@id/text_view_days_selected"
+        android:layout_marginRight="24dp"
+
+        android:layout_marginTop="12dp"
+        />
+
+
+
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="How many things will you keep track of?"
+        android:gravity="center_vertical"
+        android:textSize="8pt"
+        android:layout_alignTop="@id/text_view_when_do"
+        android:layout_marginTop="24dp"
+        android:layout_marginLeft="8dp"
+        android:textStyle="bold"
+        android:id="@+id/text_view_for_list_view"
+        />
+
+    <Spinner
+        android:id="@+id/number_spinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minWidth="12dp"
+        android:maxWidth="35dp"
+        android:layout_alignTop="@id/day_select_spinner"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="24dp"
+        />
+
+    <ListView
+        android:id="@+id/create_listView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/text_view_for_list_view"
+        android:layout_marginTop="32dp"></ListView>
+</RelativeLayout>

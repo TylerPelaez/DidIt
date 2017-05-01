@@ -77,21 +77,13 @@ public class TaskViewFragment extends Fragment {
             fis = new FileInputStream(file);
             ObjectInputStream ois = new ObjectInputStream(fis);
 
-
-
-
             ArrayList<Habit> habits = (ArrayList<Habit>) ois.readObject();
 
 
+            // Necessary for the adapter to be updated
             for (int i = 0; i < habits.size(); ++i) {
                 mTaskListAdapter.add(habits.get(i));
             }
-
-
-
-
-
-
 
 
         } catch(FileNotFoundException e) {
@@ -197,7 +189,7 @@ public class TaskViewFragment extends Fragment {
 
             ObjectOutputStream oos = new ObjectOutputStream(fos);
 
-            Log.d("adapter:", Integer.toString(mTaskListAdapter.getCount()));
+            //Log.d("adapter:", Integer.toString(mTaskListAdapter.getCount()));
             oos.writeObject(mTaskListAdapter.habitList);
         } catch(Exception e) {
             e.printStackTrace();

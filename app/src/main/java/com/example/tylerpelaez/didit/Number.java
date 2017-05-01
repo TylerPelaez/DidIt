@@ -11,7 +11,7 @@ import java.io.Serializable;
 
 public class Number extends Descriptor implements Serializable {
     double num;
-    String label;
+    //String label;
 
 //    @Override
 //    public int describeContents() {
@@ -41,14 +41,14 @@ public class Number extends Descriptor implements Serializable {
 
     public Number(double n, String l){
         num = n;
-        label = l;
+        //label = l;
     }
 
     double getNum(){
         return num;
     }
 
-    String getLabel(){
-        return label;
-    }
+    //String getLabel(){
+    //    return label;
+    //}
 }

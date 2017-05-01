@@ -11,7 +11,7 @@ import java.io.Serializable;
 
 public class Time extends Descriptor implements Serializable {
     int hour, min, sec;
-    String label;
+    //String label;
 
 //    @Override
 //    public int describeContents() {
@@ -44,7 +44,7 @@ public class Time extends Descriptor implements Serializable {
 //    }
 
     public Time(int h, int m, int s, String l){
-        label = l;
+        //label = l;
         hour = h;
         min = m;
         sec = s;
