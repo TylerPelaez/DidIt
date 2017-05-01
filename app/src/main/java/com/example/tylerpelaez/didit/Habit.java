@@ -24,6 +24,8 @@ public class Habit extends JSONObject implements Serializable {
     ArrayList<String> descriptors;
     // Key is date, Value is descriptors
     HashMap<String, ArrayList<Descriptor>> log;
+    public boolean everyOther;
+    public HashMap<String,Boolean> weekdays;
 
 //    @Override
 //    public int describeContents() {
@@ -58,6 +60,15 @@ public class Habit extends JSONObject implements Serializable {
         labels = new ArrayList<String>();
         descriptors = new ArrayList<String>();
         log = new HashMap<String, ArrayList<Descriptor>>();
+        everyOther = false;
+        weekdays = new HashMap<String,Boolean>();
+        weekdays.put("Monday",false);
+        weekdays.put("Tuesday",false);
+        weekdays.put("Wednesday",false);
+        weekdays.put("Thursday",false);
+        weekdays.put("Friday",false);
+        weekdays.put("Saturday",false);
+        weekdays.put("Sunday",false);
     }
 
     public ArrayList<ArrayList<String>> getDescriptors(){
@@ -84,7 +95,19 @@ public class Habit extends JSONObject implements Serializable {
         log.put(today,desc);
     }
 
+    void addWeekday(String d){
+        if(weekdays.containsKey(d)) {
+            weekdays.put(d, true);
+        }
+    }
 
+    void removeWeekday(String d){
+        if(weekdays.containsKey(d)) {
+            weekdays.put(d, false);
+        }
+    }
 
-
+    void setEveryOther(boolean v){
+        everyOther = v;
+    }
 }
