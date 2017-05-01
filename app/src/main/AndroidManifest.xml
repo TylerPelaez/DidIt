@@ -24,6 +24,11 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.tylerpelaez.didit.MainActivity" />
         </activity>
+        <activity android:name=".CreateHabitActivity"
+            android:label="CreateHabitActivity"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme"></activity>
+
     </application>
 
 </manifest>

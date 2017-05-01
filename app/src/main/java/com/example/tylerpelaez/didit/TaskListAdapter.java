@@ -26,7 +26,7 @@ public class TaskListAdapter extends ArrayAdapter<Habit> {
     private Context context;
     private LayoutInflater inflater;
 
-    private ArrayList<Habit> habitList;
+    public ArrayList<Habit> habitList;
 
     public TaskListAdapter(Context context, ArrayList<Habit> habitList) {
         super(context, R.layout.list_item_task, habitList);

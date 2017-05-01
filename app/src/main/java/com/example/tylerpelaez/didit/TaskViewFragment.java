@@ -28,6 +28,14 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 
 
+import java.io.EOFException;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,6 +50,10 @@ public class TaskViewFragment extends Fragment {
 
     private TaskListAdapter mTaskListAdapter;
 
+    private String filename = "content";
+
+    private int requestCodeSent = 55;
+
 
     public TaskViewFragment() {
     }
@@ -51,12 +63,44 @@ public class TaskViewFragment extends Fragment {
 
         super.onCreate(savedInstanceState);
 
-
-
-
+        mTaskListAdapter = new TaskListAdapter(getActivity(), new ArrayList<Habit>());
 
         setHasOptionsMenu(true);
 
+
+
+
+        FileInputStream fis;
+        File file = new File(getContext().getFilesDir(), filename);
+        try {
+
+            fis = new FileInputStream(file);
+            ObjectInputStream ois = new ObjectInputStream(fis);
+
+
+
+
+            ArrayList<Habit> habits = (ArrayList<Habit>) ois.readObject();
+
+
+            for (int i = 0; i < habits.size(); ++i) {
+                mTaskListAdapter.add(habits.get(i));
+            }
+
+
+
+
+
+
+
+
+        } catch(FileNotFoundException e) {
+            e.printStackTrace();
+        }catch(ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch(IOException e) {
+            e.printStackTrace();
+        }
 
 
     }
@@ -81,10 +125,13 @@ public class TaskViewFragment extends Fragment {
 
         ListView listView = (ListView) rootView.findViewById(R.id.list_view);
 
-        mTaskListAdapter = new TaskListAdapter(getActivity(), new ArrayList<Habit>());
+
         listView.setAdapter(mTaskListAdapter);
-        Habit habit = new Habit("Test");
-        mTaskListAdapter.add(habit);
+        if (mTaskListAdapter.getCount() == 0) {
+            Habit habit = new Habit("Test");
+            mTaskListAdapter.add(habit);
+        }
+
 
 
 
@@ -110,7 +157,7 @@ public class TaskViewFragment extends Fragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_add_habit:
-                showDialog();
+                launchCreateHabitScreen();
                 return true;
 
             default:
@@ -124,16 +171,39 @@ public class TaskViewFragment extends Fragment {
 
 
 
-
-
-    public void showDialog() {
-        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-        CustomDialogFragment dialog = CustomDialogFragment.newInstance();
-        dialog.show(getActivity().getFragmentManager(),"dialog fragment");
-
-        //getActivity().getFragmentManager().beginTransaction().add(android.R.id.content, dialog).commit();
+    private void launchCreateHabitScreen() {
+        Intent createIntent = new Intent(getActivity(), CreateHabitActivity.class);
+        startActivityForResult(createIntent, requestCodeSent);
     }
 
+    @Override
+    public void onPause() {
+        super.onPause();
+
+
+        File file = new File(getContext().getFilesDir(), filename);
+        if (!file.exists()) {
+            try {
+                file.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+                return;
+            }
+
+        }
+        FileOutputStream fos;
+        try {
+            fos = new FileOutputStream(file);
+
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+
+            Log.d("adapter:", Integer.toString(mTaskListAdapter.getCount()));
+            oos.writeObject(mTaskListAdapter.habitList);
+        } catch(Exception e) {
+            e.printStackTrace();
+            return;
+        }
+    }
 
 
 
