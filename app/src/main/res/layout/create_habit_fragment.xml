@@ -6,6 +6,30 @@
     >
 
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Enter name of habit:"
+        android:gravity="center_vertical"
+        android:textSize="8pt"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="12dp"
+        android:layout_marginLeft="8dp"
+        android:textStyle="bold"
+        android:id="@+id/text_view_enter_habit_name"
+        />
+
+    <EditText
+        android:id="@+id/enter_name_field"
+        android:layout_width="228dp"
+        android:layout_marginRight="8dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_height="44dp"
+        android:maxLines="1"
+        android:inputType="text"/>
+
 
     <TextView
         android:layout_width="wrap_content"
@@ -13,10 +37,10 @@
         android:text="When will you do this?"
         android:gravity="center_vertical"
         android:textSize="8pt"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="12dp"
-        android:layout_marginLeft="8dp"
+        android:layout_alignTop="@id/text_view_enter_habit_name"
+        android:layout_marginTop="24dp"
         android:textStyle="bold"
+        android:layout_marginLeft="8dp"
         android:id="@+id/text_view_when_do"
         />
 
@@ -25,9 +49,9 @@
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
         android:textSize="6pt"
-        android:layout_alignParentTop="true"
+        android:layout_alignTop="@id/enter_name_field"
         android:layout_alignParentRight="true"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="38dp"
         android:layout_marginRight="8dp"
         android:id="@+id/text_view_days_selected"
         />
@@ -38,11 +62,10 @@
         android:layout_height="wrap_content"
         android:minWidth="12dp"
         android:maxWidth="35dp"
-        android:layout_alignParentTop="true"
         android:layout_alignRight="@id/text_view_days_selected"
-        android:layout_marginRight="24dp"
+        android:layout_marginRight="28dp"
 
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="36dp"
         />
 
 

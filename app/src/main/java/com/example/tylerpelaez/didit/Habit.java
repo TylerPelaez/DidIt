@@ -27,6 +27,7 @@ public class Habit extends JSONObject implements Serializable {
     public boolean everyOther;
     public int num_skips;
     public HashMap<String,Boolean> weekdays;
+    private String startDate;
 
 //    @Override
 //    public int describeContents() {
@@ -71,6 +72,8 @@ public class Habit extends JSONObject implements Serializable {
         weekdays.put("Friday",false);
         weekdays.put("Saturday",false);
         weekdays.put("Sunday",false);
+        SimpleDateFormat sdf = new SimpleDateFormat("mm/dd/yyyy");
+        startDate = sdf.format(Calendar.getInstance().get(Calendar.DATE));
     }
 
     public ArrayList<ArrayList<String>> getDescriptors(){

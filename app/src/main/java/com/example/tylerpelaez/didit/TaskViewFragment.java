@@ -39,6 +39,7 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import static android.app.Activity.RESULT_OK;
 import static android.content.Context.LAYOUT_INFLATER_SERVICE;
 
 
@@ -158,6 +159,18 @@ public class TaskViewFragment extends Fragment {
 
                 return super.onOptionsItemSelected(item);
 
+        }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        // Check which request we're responding to
+        if (requestCode == requestCodeSent) {
+            // Make sure the request was successful
+            if (resultCode == RESULT_OK) {
+                Habit newHabit = (Habit) data.getExtras().getSerializable("returnHabit");
+                mTaskListAdapter.add(newHabit);
+            }
         }
     }
 

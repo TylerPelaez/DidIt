@@ -20,11 +20,12 @@
     <EditText
         android:layout_width="120dp"
         android:layout_height="wrap_content"
-        android:inputType="text"
+        android:inputType="textNoSuggestions"
         android:id="@+id/list_item_edit_text"
         android:layout_alignStart="@id/list_item_prompt"
         android:layout_alignLeft="@id/list_item_prompt"
-        android:layout_marginLeft="80dp"/>
+        android:layout_marginLeft="80dp"
+        android:imeOptions="actionNext"/>
 
     <Spinner
         android:layout_width="wrap_content"
