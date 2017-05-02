@@ -43,10 +43,23 @@ public class Time extends Descriptor implements Serializable {
 //        sec = in.readInt();
 //    }
 
-    public Time(int h, int m, int s, String l){
+    public Time(int h, int m, int s) {
         //label = l;
         hour = h;
         min = m;
+        sec = s;
+    }
+
+    public void setHour( int h) {
+        hour = h;
+    }
+
+    public void setMin( int m) {
+        min = m;
+    }
+
+
+    public void setSec( int s) {
         sec = s;
     }
 

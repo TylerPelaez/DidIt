@@ -39,9 +39,13 @@ public class Number extends Descriptor implements Serializable {
 //        label = in.readString();
 //    }
 
-    public Number(double n, String l){
+    public Number(double n){
         num = n;
         //label = l;
+    }
+
+    public void setNum(double newNum) {
+        num = newNum;
     }
 
     double getNum(){

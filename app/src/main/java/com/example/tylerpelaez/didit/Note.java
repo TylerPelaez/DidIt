@@ -40,7 +40,11 @@ public class Note extends Descriptor implements Serializable {
         note = n;
     }
 
-    String getNote(){
+    public void setNote(String n) {
+        note = n;
+    }
+
+    public String getNote(){
         return note;
     }
 }

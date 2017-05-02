@@ -10,6 +10,7 @@ import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 
 
@@ -23,11 +24,11 @@ public class Habit extends JSONObject implements Serializable {
     ArrayList<String> labels;
     ArrayList<String> descriptors;
     // Key is date, Value is descriptors
-    HashMap<String, ArrayList<Descriptor>> log;
+    HashMap<Date, ArrayList<Descriptor>> log;
     public boolean everyOther;
     public int num_skips;
     public HashMap<String,Boolean> weekdays;
-    private String startDate;
+    private Date startDate;
 
 //    @Override
 //    public int describeContents() {
@@ -61,7 +62,7 @@ public class Habit extends JSONObject implements Serializable {
         name = n;
         labels = new ArrayList<String>();
         descriptors = new ArrayList<String>();
-        log = new HashMap<String, ArrayList<Descriptor>>();
+        log = new HashMap<Date, ArrayList<Descriptor>>();
         everyOther = false;
         num_skips = 0;
         weekdays = new HashMap<String,Boolean>();
@@ -72,8 +73,7 @@ public class Habit extends JSONObject implements Serializable {
         weekdays.put("Friday",false);
         weekdays.put("Saturday",false);
         weekdays.put("Sunday",false);
-        SimpleDateFormat sdf = new SimpleDateFormat("mm/dd/yyyy");
-        startDate = sdf.format(Calendar.getInstance().get(Calendar.DATE));
+        startDate = new Date();
     }
 
     public ArrayList<ArrayList<String>> getDescriptors(){
@@ -95,8 +95,7 @@ public class Habit extends JSONObject implements Serializable {
     }
 
     void goalCompleted(ArrayList<Descriptor> desc){
-        SimpleDateFormat sdf = new SimpleDateFormat("mm/dd/yyyy");
-        String today = sdf.format(Calendar.getInstance().get(Calendar.DATE));
+        Date today = new Date();
         log.put(today,desc);
     }
 
