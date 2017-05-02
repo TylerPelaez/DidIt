@@ -33,7 +33,13 @@ public class Descriptor implements Serializable {
 //    private Descriptor(Parcel in) {
 //
 //    }
+    boolean isNumber;
+    public Descriptor(){
+        isNumber = false;
+    }
 
-    public Descriptor(){}
+    public boolean isNum(){
+        return isNumber;
+    }
 
 }
