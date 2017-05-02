@@ -20,7 +20,7 @@ public class GraphActivity extends AppCompatActivity {
         if(savedInstanceState == null) {
 
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.graph_container, new GraphActivityFragment(), "fragment_graph")
+                    .add(R.id.graph_container, new GraphActivityFragment(), "GraphActivityFragment")
                     .commit();
         }
     }
