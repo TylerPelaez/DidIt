@@ -9,7 +9,6 @@
         android:id="@+id/list_item_graphtext"
         android:gravity="top|center_horizontal"
         android:layout_height="match_parent"
-        android:text="HELLO WORLD"
         android:textSize="50sp"
         android:layout_marginTop="45dp"
         />

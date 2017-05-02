@@ -14,26 +14,30 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.series.BarGraphSeries;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * Created by M36 Jackson on 5/1/2017.
  */
 
-public class GraphListAdapter extends ArrayAdapter<Habit> {
+public class GraphListAdapter extends ArrayAdapter<String> {
     private Context context;
     private LayoutInflater inflater;
 
-    public ArrayList<Habit> habitList;
+    public ArrayList<String> labels;
+    public ArrayList<ArrayList<Double>> yaxis;
+    public ArrayList<ArrayList<Date>> dates;
 
-    public GraphListAdapter(Context context, ArrayList<Habit> habitList) {
-        super(context, R.layout.list_item_graph, habitList);
+    public GraphListAdapter(Context context, ArrayList<String> labels) {
+        super(context, R.layout.list_item_graph, labels);
 
         this.context = context;
-        this.habitList = habitList;
+        this.labels = labels;
 
         inflater = LayoutInflater.from(context);
     }
@@ -44,43 +48,39 @@ public class GraphListAdapter extends ArrayAdapter<Habit> {
             convertView = inflater.inflate(R.layout.list_item_graph, parent, false);
         }
 
-//        TextView textView = (TextView) convertView.findViewById(R.id.list_item_graphtext);
-//
-//        textView.setText(R.string.hello_world);
+        TextView textView = (TextView) convertView.findViewById(R.id.list_item_graphtext);
+
+        textView.setText(labels.get(position));
 
         GraphView graph = (GraphView) convertView.findViewById(R.id.graph);
-        LineGraphSeries<DataPoint> series = new LineGraphSeries<>(new DataPoint[] {
-                new DataPoint(0, 1),
-                new DataPoint(1, 5),
-                new DataPoint(2, 1500),
-                new DataPoint(3, 2),
-                new DataPoint(4, 6)
-        });
+
+        DataPoint[] points = new DataPoint[yaxis.get(position).size()];
+
+        for(int i=0;i<yaxis.get(position).size();++i) {
+            points[i] = new DataPoint(dates.get(position).get(i),yaxis.get(position).get(i));
+        }
+
+        BarGraphSeries<DataPoint> series = new BarGraphSeries<>(points);
+
         graph.addSeries(series);
 
         return convertView;
 
     }
 
-    @Override
-    public void add(Habit habit) {
-        habitList.add(habit);
+    public void add(String label, ArrayList<Double> yvals, ArrayList<Date> date) {
+        labels.add(label);
+        yaxis.add(yvals);
+        dates.add(date);
         notifyDataSetChanged();
     }
 
     @Override
     public void clear() {
         super.clear();
-        habitList.clear();
+        labels.clear();
+        yaxis.clear();
+        dates.clear();
         notifyDataSetChanged();
-    }
-
-    @Nullable
-    @Override
-    public Habit getItem(int position) {
-        if(position > habitList.size()) {
-            return null;
-        }
-        return habitList.get(position);
     }
 }

@@ -26,14 +26,13 @@ public class GraphActivityFragment extends Fragment {
 
         super.onCreate(savedInstanceState);
 
-        mGraphListAdapter = new GraphListAdapter(getActivity(), new ArrayList<Habit>());
+        mGraphListAdapter = new GraphListAdapter(getActivity(), new ArrayList<String>());
 
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        Log.d("debug","here");
         View rootView = inflater.inflate(R.layout.fragment_graph, container, false);
 
         Intent intent = getActivity().getIntent();
@@ -42,8 +41,13 @@ public class GraphActivityFragment extends Fragment {
         ListView listView = (ListView) rootView.findViewById(R.id.graphListView);
 
         listView.setAdapter(mGraphListAdapter);
+
+        //TODO: Implementation here
+
         if (mGraphListAdapter.getCount() == 0) {
-            mGraphListAdapter.add(habit);
+            for(int i=0;i<habit.labels.size();++i) {
+                mGraphListAdapter.add(habit.labels, );
+            }
         }
 
         return rootView;
