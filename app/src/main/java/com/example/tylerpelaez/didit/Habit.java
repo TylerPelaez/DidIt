@@ -12,6 +12,9 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.SortedMap;
+import java.util.TreeMap;
+import java.util.TreeSet;
 
 
 /**
@@ -24,7 +27,7 @@ public class Habit extends JSONObject implements Serializable {
     ArrayList<String> labels;
     ArrayList<String> descriptors;
     // Key is date, Value is descriptors
-    HashMap<Date, ArrayList<Descriptor>> log;
+    SortedMap<Date, ArrayList<Descriptor>> log;
     public boolean everyOther;
     public int num_skips;
     public HashMap<String,Boolean> weekdays;
@@ -62,7 +65,7 @@ public class Habit extends JSONObject implements Serializable {
         name = n;
         labels = new ArrayList<String>();
         descriptors = new ArrayList<String>();
-        log = new HashMap<Date, ArrayList<Descriptor>>();
+        log = new TreeMap<>();
         everyOther = false;
         num_skips = 0;
         weekdays = new HashMap<String,Boolean>();
@@ -120,7 +123,7 @@ public class Habit extends JSONObject implements Serializable {
         labels.add(l);
     }
 
-    public void setLog(HashMap<Date,ArrayList<Descriptor>> l) {
+    public void setLog(TreeMap<Date,ArrayList<Descriptor>> l) {
         log = l;
     }
 

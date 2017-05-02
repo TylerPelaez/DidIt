@@ -22,6 +22,7 @@ import com.jjoe64.graphview.series.LineGraphSeries;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 
 /**
  * Created by M36 Jackson on 5/1/2017.
@@ -68,19 +69,34 @@ public class GraphListAdapter extends ArrayAdapter<String> {
         series.setDrawDataPoints(true);
         graph.addSeries(series);
 
+//        Iterator<DataPoint> iter = series.getValues(0, series.va);
+//        for (; iter.hasNext();) {
+//            DataPoint me = iter.next();
+//            Log.d("DATA POINT:" , me.toString());
+//        }
+
+
         // set date label formatter
         graph.getGridLabelRenderer().setLabelFormatter(new DateAsXAxisLabelFormatter(getContext()));
         graph.getGridLabelRenderer().setNumHorizontalLabels(4); // only 4 because of the space
 
         // set manual x bounds to have nice steps
-        graph.getViewport().setMinX(dates.get(0).get(0).getTime());
-        graph.getViewport().setMaxX(dates.get(0).get(3).getTime());
+
+        int min = 7;
+        if (dates.get(position).size() - 1 < min ) {
+            min = dates.get(position).size() - 1;
+        }
+        graph.getViewport().setMinX(dates.get(position).get(0).getTime());
+        graph.getViewport().setMaxX(dates.get(position).get(min).getTime());
+        graph.getViewport().setScrollable(true);
         graph.getViewport().setXAxisBoundsManual(true);
 
         // as we use dates as labels, the human rounding to nice readable numbers
         // is not necessary
         graph.getGridLabelRenderer().setPadding(40);
         graph.getGridLabelRenderer().setHumanRounding(false);
+
+
 
         return convertView;
 

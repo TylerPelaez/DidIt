@@ -44,6 +44,8 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
+import java.util.SortedMap;
+import java.util.TreeMap;
 
 import static android.app.Activity.RESULT_OK;
 import static android.content.Context.LAYOUT_INFLATER_SERVICE;
@@ -133,22 +135,23 @@ public class TaskViewFragment extends Fragment {
         //if (mTaskListAdapter.getCount() == 0) {
         Habit habit = new Habit("Test");
 
-                            habit.addLabel("Sit-Ups");
+                            habit.addDescriptor("Sit-Ups", "Number");
 
-                            HashMap<Date,ArrayList<Descriptor>> toAdd = new HashMap<Date,ArrayList<Descriptor>>();
+                    TreeMap<Date,ArrayList<Descriptor>> toAdd = new TreeMap<>();
+
                     ArrayList<Descriptor> desclist = new ArrayList<Descriptor>();
                     desclist.add(new Number(5.0));
-                    toAdd.put(new GregorianCalendar(2017, Calendar.JANUARY, 5).getTime(),desclist);
+                    toAdd.put(new GregorianCalendar(2017, Calendar.JANUARY, 5).getTime(),new ArrayList<Descriptor>(desclist));
                     Log.d("debug","2017/1/5 is " + new GregorianCalendar(2017,1,5).toString());
                     desclist = new ArrayList<Descriptor>();
                     desclist.add(new Number(2.0));
-                    toAdd.put(new GregorianCalendar(2017, Calendar.JANUARY, 6).getTime(),desclist);
+                    toAdd.put(new GregorianCalendar(2017, Calendar.JANUARY, 6).getTime(),new ArrayList<Descriptor>(desclist));
                     desclist = new ArrayList<Descriptor>();
                     desclist.add(new Number(10.0));
-                    toAdd.put(new GregorianCalendar(2017,Calendar.JANUARY,7).getTime(),desclist);
+                    toAdd.put(new GregorianCalendar(2017,Calendar.JANUARY,7).getTime(),new ArrayList<Descriptor>(desclist));
                     desclist = new ArrayList<Descriptor>();
-                    desclist.add(new Number(15.0));
-                    toAdd.put(new GregorianCalendar(2017,Calendar.JANUARY,8).getTime(),desclist);
+                    desclist.add(new Number(1.0));
+                    toAdd.put(new GregorianCalendar(2017,Calendar.JANUARY,8).getTime(),new ArrayList<Descriptor>(desclist));
                     habit.setLog(toAdd);
 
                 mTaskListAdapter.add(habit);
