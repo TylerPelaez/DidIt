@@ -44,11 +44,11 @@ public class GraphActivityFragment extends Fragment {
 
         //TODO: Implementation here
 
-        if (mGraphListAdapter.getCount() == 0) {
-            for(int i=0;i<habit.labels.size();++i) {
-                mGraphListAdapter.add(habit.labels, );
-            }
-        }
+//        if (mGraphListAdapter.getCount() == 0) {
+//            for(int i=0;i<habit.labels.size();++i) {
+//                mGraphListAdapter.add(habit.labels, );
+//            }
+//        }
 
         return rootView;
     }

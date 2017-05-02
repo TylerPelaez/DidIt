@@ -37,6 +37,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -111,6 +112,8 @@ public class TaskViewFragment extends Fragment {
 
         return;
     }
+
+
 
 
 
@@ -213,6 +216,15 @@ public class TaskViewFragment extends Fragment {
         }
     }
 
+
+    public void updateHabitFromDialog() {
+        if (getContext() instanceof MainActivity) {
+            mTaskListAdapter.habitList.get(((MainActivity) getContext()).mPosition).goalCompleted(((MainActivity) getContext()).mDescriptors);
+            for(int i = 0; i < mTaskListAdapter.habitList.size(); ++i) {
+                Log.d("TEST", mTaskListAdapter.habitList.get(i).log.toString());
+            }
+        }
+    }
 
 
 
