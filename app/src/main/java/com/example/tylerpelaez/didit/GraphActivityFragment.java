@@ -14,6 +14,8 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * A placeholder fragment containing a simple view.
@@ -45,22 +47,26 @@ public class GraphActivityFragment extends Fragment {
 
         listView.setAdapter(mGraphListAdapter);
 
+        Set<Map.Entry<Date, ArrayList<Descriptor>>> entries = habit.log.entrySet();
+        ArrayList<Descriptor> descriptors = entries.iterator().next().getValue();
+
         Iterator<ArrayList<Descriptor>> descIt = habit.log.values().iterator();
         ArrayList<Integer> validDescriptors = new ArrayList<Integer>();
 
-        while(descIt.hasNext()) {
-            ArrayList<Descriptor> descriptors = descIt.next();
-            for (int i = 0; i < descriptors.size(); ++i) {
-                if (descriptors.get(i).isNumber) {
-                    validDescriptors.add(i);
-                }
+        for (int i = 0; i < descriptors.size(); ++i) {
+            if (descriptors.get(i).isNumber) {
+                validDescriptors.add(i);
             }
         }
+
+        Log.d("debug","validDescriptors: " + validDescriptors.size());
 
         ArrayList<String> labelsToAdd = new ArrayList<String>();
         for(int i : validDescriptors) {
             labelsToAdd.add(habit.labels.get(i));
         }
+
+        Log.d("debug","label.get(0) is: " + labelsToAdd.get(0));
 
         ArrayList<ArrayList<Double>> descVals = new ArrayList<ArrayList<Double>>();
 
@@ -86,8 +92,12 @@ public class GraphActivityFragment extends Fragment {
             dateVals.add(toAdd);
         }
 
-        if (mGraphListAdapter.getCount() == 0) {
-            for(int i=0;i<habit.labels.size();++i) {
+        if (mGraphListAdapter.getCount() == 0 && habit.log.size()>0) {
+            //Log.d("debug","labelsToAdd.size() is " + labelsToAdd.size());
+            //Log.d("debug","descVals.get(0).size is " + descVals.get(0).size());
+            //Log.d("debug","dateVals.get(0).size() is " + dateVals.get(0).size());
+            for(int i=0;i<labelsToAdd.size();++i) {
+                //Log.d("debug","THIS IS " + dateVals.get(0).get(0));
                 mGraphListAdapter.add(labelsToAdd.get(i),descVals.get(i),dateVals.get(i));
             }
         }
