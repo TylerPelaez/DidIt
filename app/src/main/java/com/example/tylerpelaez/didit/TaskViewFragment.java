@@ -132,31 +132,31 @@ public class TaskViewFragment extends Fragment {
 
 
         listView.setAdapter(mTaskListAdapter);
-        //if (mTaskListAdapter.getCount() == 0) {
-        Habit habit = new Habit("Exercise");
+        if (mTaskListAdapter.getCount() == 0) {
+            Habit habit = new Habit("Exercise");
 
-                            habit.addDescriptor("Sit-Ups", "Number");
+            habit.addDescriptor("Sit-Ups", "Number");
 
-                    TreeMap<Date,ArrayList<Descriptor>> toAdd = new TreeMap<>();
+            TreeMap<Date, ArrayList<Descriptor>> toAdd = new TreeMap<>();
 
-                    ArrayList<Descriptor> desclist = new ArrayList<Descriptor>();
-                    desclist.add(new Number(5.0));
-                    toAdd.put(new GregorianCalendar(2017, Calendar.JANUARY, 5).getTime(),new ArrayList<Descriptor>(desclist));
-                    Log.d("debug","2017/1/5 is " + new GregorianCalendar(2017,1,5).toString());
-                    desclist = new ArrayList<Descriptor>();
-                    desclist.add(new Number(2.0));
-                    toAdd.put(new GregorianCalendar(2017, Calendar.JANUARY, 6).getTime(),new ArrayList<Descriptor>(desclist));
-                    desclist = new ArrayList<Descriptor>();
-                    desclist.add(new Number(10.0));
-                    toAdd.put(new GregorianCalendar(2017,Calendar.JANUARY,7).getTime(),new ArrayList<Descriptor>(desclist));
-                    desclist = new ArrayList<Descriptor>();
-                    desclist.add(new Number(1.0));
-                    toAdd.put(new GregorianCalendar(2017,Calendar.JANUARY,8).getTime(),new ArrayList<Descriptor>(desclist));
-                    habit.setLog(toAdd);
+            ArrayList<Descriptor> desclist = new ArrayList<Descriptor>();
+            desclist.add(new Number(5.0));
+            toAdd.put(new GregorianCalendar(2017, Calendar.JANUARY, 5).getTime(), new ArrayList<Descriptor>(desclist));
+            Log.d("debug", "2017/1/5 is " + new GregorianCalendar(2017, 1, 5).toString());
+            desclist = new ArrayList<Descriptor>();
+            desclist.add(new Number(2.0));
+            toAdd.put(new GregorianCalendar(2017, Calendar.JANUARY, 6).getTime(), new ArrayList<Descriptor>(desclist));
+            desclist = new ArrayList<Descriptor>();
+            desclist.add(new Number(10.0));
+            toAdd.put(new GregorianCalendar(2017, Calendar.JANUARY, 7).getTime(), new ArrayList<Descriptor>(desclist));
+            desclist = new ArrayList<Descriptor>();
+            desclist.add(new Number(1.0));
+            toAdd.put(new GregorianCalendar(2017, Calendar.JANUARY, 8).getTime(), new ArrayList<Descriptor>(desclist));
+            habit.setLog(toAdd);
 
-                mTaskListAdapter.add(habit);
+            mTaskListAdapter.add(habit);
 
-
+        }
 
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
