@@ -133,7 +133,7 @@ public class TaskViewFragment extends Fragment {
 
         listView.setAdapter(mTaskListAdapter);
         //if (mTaskListAdapter.getCount() == 0) {
-        Habit habit = new Habit("Test");
+        Habit habit = new Habit("Exercise");
 
                             habit.addDescriptor("Sit-Ups", "Number");
 
