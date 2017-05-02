@@ -22,7 +22,7 @@ import java.util.Set;
  */
 public class GraphActivityFragment extends Fragment {
 
-    private GraphListAdapter mGraphListAdapter;
+    private GraphListAdapter mGraphListAdapter; //Graph adapter which will actually handle back-end for ListView in fragment
 
     public GraphActivityFragment() {
     }
@@ -38,15 +38,16 @@ public class GraphActivityFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_graph, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_graph, container, false); //Inflate fragment to match parent activity view
 
         Intent intent = getActivity().getIntent();
-        Habit habit = (Habit) intent.getExtras().getSerializable("Habit");
+        Habit habit = (Habit) intent.getExtras().getSerializable("Habit"); //Receive habit from intent so that graph data can be compiled
 
-        ListView listView = (ListView) rootView.findViewById(R.id.graphListView);
+        ListView listView = (ListView) rootView.findViewById(R.id.graphListView); //List view which will be embedded in this fragment
 
         listView.setAdapter(mGraphListAdapter);
 
+        //Find the number of valid descriptors for which graphs can be built
         Set<Map.Entry<Date, ArrayList<Descriptor>>> entries = habit.log.entrySet();
         ArrayList<Descriptor> descriptors = entries.iterator().next().getValue();
 
@@ -61,6 +62,7 @@ public class GraphActivityFragment extends Fragment {
 
         Log.d("debug","validDescriptors: " + validDescriptors.size());
 
+        //Gather the lables (graph titles) of each descriptor which will be graphed
         ArrayList<String> labelsToAdd = new ArrayList<String>();
         for(int i : validDescriptors) {
             labelsToAdd.add(habit.labels.get(i));
@@ -68,6 +70,7 @@ public class GraphActivityFragment extends Fragment {
 
         Log.d("debug","label.get(0) is: " + labelsToAdd.get(0));
 
+        //Gather all of the descriptor values needed in order to draw each graph
         ArrayList<ArrayList<Double>> descVals = new ArrayList<ArrayList<Double>>();
 
         for(int i: validDescriptors) {
@@ -80,6 +83,7 @@ public class GraphActivityFragment extends Fragment {
             descVals.add(toAdd);
         }
 
+        //Gather all of the dates into arraylists so that each graph can be drawn
         ArrayList<ArrayList<Date>> dateVals = new ArrayList<ArrayList<Date>>();
 
         for(int i: validDescriptors) {
@@ -92,6 +96,7 @@ public class GraphActivityFragment extends Fragment {
             dateVals.add(toAdd);
         }
 
+        //Feed all of the data into the GraphListAdapter, which will actually construct the graphs
         if (mGraphListAdapter.getCount() == 0 && habit.log.size()>0) {
             //Log.d("debug","labelsToAdd.size() is " + labelsToAdd.size());
             //Log.d("debug","descVals.get(0).size is " + descVals.get(0).size());

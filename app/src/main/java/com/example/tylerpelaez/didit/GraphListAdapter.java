@@ -32,9 +32,9 @@ public class GraphListAdapter extends ArrayAdapter<String> {
     private Context context;
     private LayoutInflater inflater;
 
-    public ArrayList<String> labels;
-    public ArrayList<ArrayList<Double>> yaxis = new ArrayList<ArrayList<Double>>();
-    public ArrayList<ArrayList<Date>> dates = new ArrayList<ArrayList<Date>>();
+    public ArrayList<String> labels; //Contains graph titles
+    public ArrayList<ArrayList<Double>> yaxis = new ArrayList<ArrayList<Double>>(); //Descriptor values make up the y-axis
+    public ArrayList<ArrayList<Date>> dates = new ArrayList<ArrayList<Date>>(); //Dates are shown across the x-axis
 
     public GraphListAdapter(Context context, ArrayList<String> labels) {
         super(context, R.layout.list_item_graph, labels);
@@ -47,25 +47,30 @@ public class GraphListAdapter extends ArrayAdapter<String> {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        if(convertView == null) {
+        if(convertView == null) { //Inflate to fit list view index
             convertView = inflater.inflate(R.layout.list_item_graph, parent, false);
         }
 
+        //This textview displays the graph title (the descriptor's label)
         TextView textView = (TextView) convertView.findViewById(R.id.list_item_graphtext);
 
         textView.setText(labels.get(position));
 
+        //Create the GraphView
         GraphView graph = (GraphView) convertView.findViewById(R.id.graph);
 
+        //This array holds the data ponts that go into the graph
         DataPoint[] points = new DataPoint[yaxis.get(position).size()];
 
+        //Create each data point and put it in points
         for(int i=0;i<yaxis.get(position).size();++i) {
             Log.d("debug","Date: " + dates.get(position).get(i).toString());
             Log.d("debug","Yaxis: " + yaxis.get(position).get(i));
             points[i] = new DataPoint(dates.get(position).get(i),yaxis.get(position).get(i));
         }
 
-        LineGraphSeries<DataPoint> series = new LineGraphSeries<>(points);
+        //Finally, create the graph using series and draw it
+        LineGraphSeries<DataPoint> series = new LineGraphSeries<DataPoint>(points);
         series.setDrawDataPoints(true);
         graph.addSeries(series);
 
@@ -102,6 +107,7 @@ public class GraphListAdapter extends ArrayAdapter<String> {
 
     }
 
+    //Used to add additional information for additional graphs
     public void add(String label, ArrayList<Double> yvals, ArrayList<Date> date) {
         labels.add(label);
         yaxis.add(yvals);
@@ -109,6 +115,7 @@ public class GraphListAdapter extends ArrayAdapter<String> {
         notifyDataSetChanged();
     }
 
+    //Clear all the listviews
     @Override
     public void clear() {
         super.clear();

@@ -13,11 +13,11 @@ public class GraphActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_graph);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar); //Toolbar provides back button in upper left corner
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        if(savedInstanceState == null) {
+        if(savedInstanceState == null) { //If there isn't any saved instance, make a new GraphActivityFragment
 
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.graph_container, new GraphActivityFragment(), "GraphActivityFragment")
