@@ -52,7 +52,7 @@ public class GraphListAdapter extends ArrayAdapter<Habit> {
         LineGraphSeries<DataPoint> series = new LineGraphSeries<>(new DataPoint[] {
                 new DataPoint(0, 1),
                 new DataPoint(1, 5),
-                new DataPoint(2, 3),
+                new DataPoint(2, 1500),
                 new DataPoint(3, 2),
                 new DataPoint(4, 6)
         });

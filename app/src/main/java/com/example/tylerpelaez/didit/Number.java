@@ -41,6 +41,7 @@ public class Number extends Descriptor implements Serializable {
 
     public Number(double n){
         num = n;
+        isNumber = true;
         //label = l;
     }
 
