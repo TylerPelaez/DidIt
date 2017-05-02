@@ -37,11 +37,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-<<<<<<<<< Temporary merge branch 1
 import java.lang.reflect.Array;
-=========
 import java.text.SimpleDateFormat;
->>>>>>>>> Temporary merge branch 2
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
