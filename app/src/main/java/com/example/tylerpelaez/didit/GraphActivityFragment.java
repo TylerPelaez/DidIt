@@ -8,12 +8,24 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 /**
  * A placeholder fragment containing a simple view.
  */
 public class GraphActivityFragment extends Fragment {
 
+    private GraphListAdapter mGraphListAdapter;
+
     public GraphActivityFragment() {
+    }
+
+    public void onCreate(Bundle savedInstanceState) {
+
+        super.onCreate(savedInstanceState);
+
+        mGraphListAdapter = new GraphListAdapter(getActivity(), new ArrayList<Habit>());
+
     }
 
     @Override
@@ -23,7 +35,6 @@ public class GraphActivityFragment extends Fragment {
 
         Intent intent = getActivity().getIntent();
         Habit habit = (Habit) intent.getExtras().getSerializable("Habit");
-
 
 
         return inflater.inflate(R.layout.fragment_graph, container, false);
