@@ -65,7 +65,7 @@ public class GraphListAdapter extends ArrayAdapter<String> {
         }
 
         LineGraphSeries<DataPoint> series = new LineGraphSeries<>(points);
-        series.setDrawDataPoints(true);
+
         graph.addSeries(series);
 
         // set date label formatter
