@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -8,13 +8,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/number_list_text_view"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="4dp"
         />
 
     <EditText
-        android:layout_width="wrap_content"
+        android:layout_width="48dp"
         android:layout_height="wrap_content"
         android:id="@+id/dialog_list_edit_number"
         android:inputType="number"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="4dp"
         />
 
-</LinearLayout>
+</RelativeLayout>
