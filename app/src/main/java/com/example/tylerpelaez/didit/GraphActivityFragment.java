@@ -10,7 +10,10 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Iterator;
 
 /**
  * A placeholder fragment containing a simple view.
@@ -42,11 +45,50 @@ public class GraphActivityFragment extends Fragment {
 
         listView.setAdapter(mGraphListAdapter);
 
-        //TODO: Implementation here
+        Iterator<ArrayList<Descriptor>> descIt = habit.log.values().iterator();
+        ArrayList<Integer> validDescriptors = new ArrayList<Integer>();
+
+        while(descIt.hasNext()) {
+            ArrayList<Descriptor> descriptors = descIt.next();
+            for (int i = 0; i < descriptors.size(); ++i) {
+                if (descriptors.get(i).isNumber) {
+                    validDescriptors.add(i);
+                }
+            }
+        }
+
+        ArrayList<String> labelsToAdd = new ArrayList<String>();
+        for(int i : validDescriptors) {
+            labelsToAdd.add(habit.labels.get(i));
+        }
+
+        ArrayList<ArrayList<Double>> descVals = new ArrayList<ArrayList<Double>>();
+
+        for(int i: validDescriptors) {
+            ArrayList<Double> toAdd = new ArrayList<Double>();
+            Iterator<ArrayList<Descriptor>> it = habit.log.values().iterator();
+            while (it.hasNext()) {
+                ArrayList<Descriptor> current = it.next();
+                toAdd.add(current.get(i).getNum());
+            }
+            descVals.add(toAdd);
+        }
+
+        ArrayList<ArrayList<Date>> dateVals = new ArrayList<ArrayList<Date>>();
+
+        for(int i: validDescriptors) {
+            ArrayList<Date> toAdd = new ArrayList<Date>();
+            Iterator<Date> it = habit.log.keySet().iterator();
+            while(it.hasNext()) {
+                Date current = it.next();
+                toAdd.add(current);
+            }
+            dateVals.add(toAdd);
+        }
 
         if (mGraphListAdapter.getCount() == 0) {
             for(int i=0;i<habit.labels.size();++i) {
-                mGraphListAdapter.add(habit.labels, );
+                mGraphListAdapter.add(labelsToAdd.get(i),descVals.get(i),dateVals.get(i));
             }
         }
 
