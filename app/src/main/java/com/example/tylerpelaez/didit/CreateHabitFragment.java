@@ -156,7 +156,7 @@ public class CreateHabitFragment extends Fragment {
 
 
         mSelectedItems = new ArrayList();
-        num_skip = -1;
+        num_skip = 0;
         everyOther = false;
 
         day_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -297,6 +297,17 @@ public class CreateHabitFragment extends Fragment {
 
                 EditText editText = (EditText) getActivity().findViewById(R.id.enter_name_field);
                 String text = editText.getText().toString();
+                if (text.equals("")) {
+                    return true;
+                }
+
+                if (!everyOther && mSelectedItems.size() ==0) {
+                    return true;
+                }
+
+                //if (everyOther && num_skip == -1) {
+                //    return true;
+                //}
 
                 Habit habit = new Habit(text);
 
