@@ -56,10 +56,16 @@ public class TaskListAdapter extends ArrayAdapter<Habit> {
 
                 if (isChecked) {
                     container.setBackgroundColor(0xFF00FF00);
-                    if (context instanceof MainActivity) {
-                        ((MainActivity) context).bringUpDialog(habitList.get(position));
-                    }
+                    if (habitList.get(position).descriptors.size() > 0) {
+                        if (context instanceof MainActivity) {
+                            ((MainActivity) context).bringUpDialog(habitList.get(position), position);
 
+                            //habitList.get(position).goalCompleted(descriptorsToAdd);
+                            //Log.d(habitList.get(position).name, habitList.get(position).log.toString());
+                        }
+                    } else {
+                        habitList.get(position).goalCompleted(new ArrayList<Descriptor>());
+                    }
                 } else {
                     container.setBackgroundColor(0);
                 }

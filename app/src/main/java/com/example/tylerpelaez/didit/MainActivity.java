@@ -7,6 +7,7 @@ import android.graphics.Rect;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -35,6 +36,8 @@ public class MainActivity extends AppCompatActivity {
                     .commit();
         }
 
+
+
         //Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         //setSupportActionBar(myToolbar);
 
@@ -42,8 +45,14 @@ public class MainActivity extends AppCompatActivity {
 
     DialogListAdapter mDialogListAdapter;
 
-    public ArrayList<Descriptor> bringUpDialog(Habit habit) {
-        final ArrayList<Descriptor> myDescriptors = new ArrayList<>();
+    ArrayList<Descriptor> mDescriptors;
+
+    public int mPosition;
+
+    public void bringUpDialog(Habit habit, int position) {
+        mDescriptors = new ArrayList<>();
+        mPosition = position;
+        //final ArrayList<Descriptor> myDescriptors = new ArrayList<>();
 
         LayoutInflater inflater = getLayoutInflater();
 
@@ -83,8 +92,12 @@ public class MainActivity extends AppCompatActivity {
                 // or return them to the component that opened the dialog
 
 
-                myDescriptors.addAll(mDialogListAdapter.entries);
+
+                mDescriptors.addAll(mDialogListAdapter.entries);
+                ((TaskViewFragment)(getSupportFragmentManager().findFragmentByTag("TaskViewFragment"))).updateHabitFromDialog();
+
                 dialog.dismiss();
+
             }
         })
                 .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
@@ -100,7 +113,9 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        return myDescriptors;
+        //Log.d("TEXT", myDescriptors.toString());
+
+        return;
     }
 
     @Override
