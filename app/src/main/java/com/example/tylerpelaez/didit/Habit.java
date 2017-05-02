@@ -116,12 +116,4 @@ public class Habit extends JSONObject implements Serializable {
         }
     }
 
-    public void addLabel(String l) {
-        labels.add(l);
-    }
-
-    public void setLog(HashMap<Date,ArrayList<Descriptor>> l) {
-        log = l;
-    }
-
 }

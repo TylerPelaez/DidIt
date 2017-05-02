@@ -66,7 +66,12 @@ public class DialogListAdapter extends ArrayAdapter<String> {
                         public void onFocusChange(View v, boolean hasFocus) {
                             if (!hasFocus) {
                                 EditText et =(EditText)v.findViewById(R.id.dialog_list_edit_time_hours);
-                                ((Time)(entries.get(position))).setHour(Integer.parseInt(et.getText().toString().trim()));
+                                if (et.getText().toString().equals("")) {
+                                    ((Time)(entries.get(position))).setHour(0);
+                                    et.setText(Integer.toString(0));
+                                } else {
+                                    ((Time) (entries.get(position))).setHour(Integer.parseInt(et.getText().toString().trim()));
+                                }
                             }
                         }
                     });
@@ -77,7 +82,15 @@ public class DialogListAdapter extends ArrayAdapter<String> {
                         public void onFocusChange(View v, boolean hasFocus) {
                             if (!hasFocus) {
                                 EditText et =(EditText)v.findViewById(R.id.dialog_list_edit_time_minutes);
-                                ((Time)(entries.get(position))).setMin(Integer.parseInt(et.getText().toString().trim()));
+                                if (et.getText().toString().equals("")) {
+                                    ((Time)(entries.get(position))).setMin(0);
+                                    et.setText(Integer.toString(0));
+                                }  else if (Integer.parseInt(et.getText().toString()) >= 60) {
+                                    ((Time)(entries.get(position))).setMin(59);
+                                    et.setText(Integer.toString(59));
+                                } else {
+                                    ((Time) (entries.get(position))).setMin(Integer.parseInt(et.getText().toString().trim()));
+                                }
                             }
                         }
                     });
@@ -88,7 +101,15 @@ public class DialogListAdapter extends ArrayAdapter<String> {
                         public void onFocusChange(View v, boolean hasFocus) {
                             if (!hasFocus) {
                                 EditText et =(EditText)v.findViewById(R.id.dialog_list_edit_time_seconds);
-                                ((Time)(entries.get(position))).setSec(Integer.parseInt(et.getText().toString().trim()));
+                                if (et.getText().toString().equals("")) {
+                                    ((Time)(entries.get(position))).setSec(0);
+                                    et.setText(Integer.toString(0));
+                                }  else if (Integer.parseInt(et.getText().toString()) >= 60) {
+                                    ((Time)(entries.get(position))).setSec(59);
+                                    et.setText(Integer.toString(59));
+                                }else {
+                                    ((Time) (entries.get(position))).setSec(Integer.parseInt(et.getText().toString().trim()));
+                                }
                             }
                         }
                     });
@@ -106,7 +127,12 @@ public class DialogListAdapter extends ArrayAdapter<String> {
                         public void onFocusChange(View v, boolean hasFocus) {
                             if (!hasFocus) {
                                 EditText et =(EditText)v.findViewById(R.id.dialog_list_edit_number);
-                                ((Number)(entries.get(position))).setNum(Double.parseDouble(et.getText().toString().trim()));
+                                if (et.getText().toString().equals("")) {
+                                    ((Number)(entries.get(position))).setNum(0);
+                                    et.setText(Integer.toString(0));
+                                } else {
+                                    ((Number)(entries.get(position))).setNum(Double.parseDouble(et.getText().toString().trim()));
+                                }
                             }
                         }
                     });

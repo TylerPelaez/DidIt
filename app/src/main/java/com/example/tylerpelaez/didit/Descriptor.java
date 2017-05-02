@@ -10,7 +10,6 @@ import java.io.Serializable;
  */
 
 public class Descriptor implements Serializable {
-    double num;
 //    @Override
 //    public int describeContents() {
 //        return 0;
@@ -37,10 +36,6 @@ public class Descriptor implements Serializable {
     boolean isNumber = false;
     public Descriptor(){
 
-    }
-
-    double getNum() {
-        return num;
     }
 
     public boolean isNum(){

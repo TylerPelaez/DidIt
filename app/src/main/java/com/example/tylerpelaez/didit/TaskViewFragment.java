@@ -38,12 +38,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.lang.reflect.Array;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.HashMap;
 import java.util.List;
 
 import static android.app.Activity.RESULT_OK;
@@ -131,29 +126,10 @@ public class TaskViewFragment extends Fragment {
 
 
         listView.setAdapter(mTaskListAdapter);
-        //if (mTaskListAdapter.getCount() == 0) {
+        if (mTaskListAdapter.getCount() == 0) {
             Habit habit = new Habit("Test");
-
-            habit.addLabel("Sit-Ups");
-
-            HashMap<Date,ArrayList<Descriptor>> toAdd = new HashMap<Date,ArrayList<Descriptor>>();
-            ArrayList<Descriptor> desclist = new ArrayList<Descriptor>();
-            desclist.add(new Number(5.0));
-            toAdd.put(new GregorianCalendar(2017, Calendar.JANUARY, 5).getTime(),desclist);
-            Log.d("debug","2017/1/5 is " + new GregorianCalendar(2017,1,5).toString());
-            desclist = new ArrayList<Descriptor>();
-            desclist.add(new Number(2.0));
-            toAdd.put(new GregorianCalendar(2017, Calendar.JANUARY, 6).getTime(),desclist);
-            desclist = new ArrayList<Descriptor>();
-            desclist.add(new Number(10.0));
-            toAdd.put(new GregorianCalendar(2017,Calendar.JANUARY,7).getTime(),desclist);
-            desclist = new ArrayList<Descriptor>();
-            desclist.add(new Number(15.0));
-            toAdd.put(new GregorianCalendar(2017,Calendar.JANUARY,8).getTime(),desclist);
-            habit.setLog(toAdd);
-
             mTaskListAdapter.add(habit);
-       // }
+        }
 
 
 

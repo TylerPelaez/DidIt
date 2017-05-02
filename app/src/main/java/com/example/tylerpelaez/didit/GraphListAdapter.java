@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +14,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.jjoe64.graphview.GraphView;
-import com.jjoe64.graphview.helper.DateAsXAxisLabelFormatter;
 import com.jjoe64.graphview.series.BarGraphSeries;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
@@ -32,8 +30,8 @@ public class GraphListAdapter extends ArrayAdapter<String> {
     private LayoutInflater inflater;
 
     public ArrayList<String> labels;
-    public ArrayList<ArrayList<Double>> yaxis = new ArrayList<ArrayList<Double>>();
-    public ArrayList<ArrayList<Date>> dates = new ArrayList<ArrayList<Date>>();
+    public ArrayList<ArrayList<Double>> yaxis;
+    public ArrayList<ArrayList<Date>> dates;
 
     public GraphListAdapter(Context context, ArrayList<String> labels) {
         super(context, R.layout.list_item_graph, labels);
@@ -59,28 +57,12 @@ public class GraphListAdapter extends ArrayAdapter<String> {
         DataPoint[] points = new DataPoint[yaxis.get(position).size()];
 
         for(int i=0;i<yaxis.get(position).size();++i) {
-            Log.d("debug","Date: " + dates.get(position).get(i).toString());
-            Log.d("debug","Yaxis: " + yaxis.get(position).get(i));
             points[i] = new DataPoint(dates.get(position).get(i),yaxis.get(position).get(i));
         }
 
-        LineGraphSeries<DataPoint> series = new LineGraphSeries<>(points);
+        BarGraphSeries<DataPoint> series = new BarGraphSeries<>(points);
 
         graph.addSeries(series);
-
-        // set date label formatter
-        graph.getGridLabelRenderer().setLabelFormatter(new DateAsXAxisLabelFormatter(getContext()));
-        graph.getGridLabelRenderer().setNumHorizontalLabels(4); // only 4 because of the space
-
-        // set manual x bounds to have nice steps
-        graph.getViewport().setMinX(dates.get(0).get(0).getTime());
-        graph.getViewport().setMaxX(dates.get(0).get(3).getTime());
-        graph.getViewport().setXAxisBoundsManual(true);
-
-        // as we use dates as labels, the human rounding to nice readable numbers
-        // is not necessary
-        graph.getGridLabelRenderer().setPadding(40);
-        graph.getGridLabelRenderer().setHumanRounding(false);
 
         return convertView;
 
