@@ -170,7 +170,7 @@ public class CreateHabitListAdapter extends ArrayAdapter<String> {
 
     @Override
     public void clear() {
-        super.clear();
+        //super.clear();
         strings.clear();
         labels.clear();
         types.clear();
@@ -199,7 +199,7 @@ public class CreateHabitListAdapter extends ArrayAdapter<String> {
 
     @Override
     public void remove(String toRemove) {
-        super.remove(toRemove);
+        //super.remove(toRemove);
         for (int i = 0; i < strings.size(); ++i) {
             if (strings.get(i).equals(toRemove)) {
                 strings.remove(i);
