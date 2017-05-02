@@ -38,7 +38,7 @@ public class TaskListAdapter extends ArrayAdapter<Habit> {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         if(convertView == null) {
             convertView = inflater.inflate(R.layout.list_item_task, parent, false);
         }
@@ -56,6 +56,10 @@ public class TaskListAdapter extends ArrayAdapter<Habit> {
 
                 if (isChecked) {
                     container.setBackgroundColor(0xFF00FF00);
+                    if (context instanceof MainActivity) {
+                        ((MainActivity) context).bringUpDialog(habitList.get(position));
+                    }
+
                 } else {
                     container.setBackgroundColor(0);
                 }
